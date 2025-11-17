@@ -63,3 +63,4 @@ This project integrates a **Node.js** backend with a **MongoDB** database, demon
 <div style="display: flex; justify-content: space-around;">
   <img src="screenshots/auth.png" alt="Home Screen" />
 </div>
+

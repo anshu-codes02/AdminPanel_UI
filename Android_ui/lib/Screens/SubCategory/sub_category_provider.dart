@@ -48,7 +48,7 @@ class SubCategoryProvider extends ChangeNotifier{
           "name":controller1.text,
           "CategoryId":cat!.sId
         };
-        
+                
         final response=await service.postItems(endpointsURL: '/subCategory/create', data: subcat,ismultipart: false);
        
         if(response!=null && response["success"]==true){
