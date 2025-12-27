@@ -23,7 +23,7 @@ class BrandAdd extends StatelessWidget{
       child: Form(
         key: provider.BrandFormKey,
         child: Container(
-           width: size.width*0.3,
+           width: 460,
             decoration: BoxDecoration(
               color: Colors.orange.withOpacity(0.1)
             ),
@@ -34,68 +34,66 @@ class BrandAdd extends StatelessWidget{
                  ),
                    Row(
                           children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Container(
-                                 
-                                  width: 200,
-                                 
-                                  child: TextFormField(
-                                  
-                                  controller: provider.controller1,
-                                  maxLines: 1,
-                                   decoration: InputDecoration(
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                  labelText: "Name",
-                                  labelStyle:const TextStyle(color: Colors.black54,fontWeight: FontWeight.w500),
-                                                             border: OutlineInputBorder(
-                                   borderRadius: BorderRadius.circular(9.0),
-                                   borderSide: const BorderSide(color: Colors.black54),
-                                   ),
-                                    focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4.0),
-                                  borderSide: const BorderSide(color: Colors.black54, width: 2),
-                                    ), // Orange border when focused
-                                   enabledBorder: OutlineInputBorder(
-                                   borderRadius: BorderRadius.circular(4.0),
-                                      borderSide: const BorderSide(color: Colors.black54, width: 2),
-                                    ), // Orange border when not focused
-                                  ),
-                                  keyboardType: TextInputType.text,
-                                  validator: (value) {
-                                    if(value==null || value.isEmpty)
-                                    {
-                                      return "Enter Brand Name";
-                                    }
-                                    return null;
-                                    },
-                                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                              Expanded(
+                               
+                                flex:1,
+                               
+                                child: TextFormField(
+                                
+                                controller: provider.controller1,
+                                maxLines: 1,
+                                 decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                labelText: "Name",
+                                labelStyle:const TextStyle(color: Colors.black54,fontWeight: FontWeight.w500),
+                                                           border: OutlineInputBorder(
+                                 borderRadius: BorderRadius.circular(9.0),
+                                 borderSide: const BorderSide(color: Colors.black54),
                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4.0),
+                                borderSide: const BorderSide(color: Colors.black54, width: 2),
+                                  ), // Orange border when focused
+                                 enabledBorder: OutlineInputBorder(
+                                 borderRadius: BorderRadius.circular(4.0),
+                                    borderSide: const BorderSide(color: Colors.black54, width: 2),
+                                  ), // Orange border when not focused
                                 ),
+                                keyboardType: TextInputType.text,
+                                validator: (value) {
+                                  if(value==null || value.isEmpty)
+                                  {
+                                    return "Enter Brand Name";
+                                  }
+                                  return null;
+                                  },
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                               ),
+                              ),
+
+                              SizedBox(
+                                width: 10,
                               ),
                 
-                   Padding(
-                     padding: const EdgeInsets.only(left: 15),
-                     child: Container(
-                     
-                      width: 200,
-                       child: 
-                       CustomDropdown<SubCategory>(
-                        initialvalue:  provider.selectedsubcategory, hintText: "Sub-Category", list: subcatprovider.localSubCategories, onchanged: (newValue){
-                          if(newValue!=null)
-                          {
-                            provider.selectedsubcategory=newValue ;
-                          }
-                        },  validator: (value) {
-                              if (value == null) {
-                                return 'Please select a Sub-Category';
-                              }
-                              return null;
-                            },
-                            displayItem: (SubCategory? subCategory)=>subCategory?.name ?? ' ',
-                            )
-                     ),
+                   Expanded(
+                   
+                    flex: 1,
+                     child: 
+                     CustomDropdown<SubCategory>(
+                      initialvalue:  provider.selectedsubcategory, hintText: "Sub-Category", list: subcatprovider.localSubCategories, onchanged: (newValue){
+                        if(newValue!=null)
+                        {
+                          provider.selectedsubcategory=newValue ;
+                        }
+                      },  validator: (value) {
+                            if (value == null) {
+                              return 'Please select a Sub-Category';
+                            }
+                            return null;
+                          },
+                          displayItem: (SubCategory? subCategory)=>subCategory?.name ?? ' ',
+                          )
                    ),
                   
                           ],
@@ -168,7 +166,9 @@ void showBrandAddform(BuildContext context){
     return AlertDialog(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: Center(child: Text('Add Brand'.toUpperCase(), style: const TextStyle(color: Colors.black,fontWeight: FontWeight.w600))),
-        content:  const BrandAdd(),
+        content:  SizedBox(
+          width: 500,
+          child: const BrandAdd()),
     );
   }).then((value) {
     provider.clearAll();

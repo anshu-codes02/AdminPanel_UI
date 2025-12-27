@@ -17,7 +17,7 @@ class SubCategoryList extends StatelessWidget{
     return Padding(
       padding: const EdgeInsets.only(left:10, top: 10 ),
       child: Container(
-        width: 1189,
+        width: 1199,
         decoration: BoxDecoration(
           color: Colors.white,
          borderRadius: BorderRadius.circular(10),
@@ -27,55 +27,60 @@ class SubCategoryList extends StatelessWidget{
     ),
         ),
         child:
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding:  EdgeInsets.only(left: 10,top: 10),
-              child: Text("All SubCategories",style: TextStyle(color: Colors.black54,fontSize: 20,fontWeight: FontWeight.w600),),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Consumer<SubCategoryProvider>(
-              builder: (context, provider, child) {
-                if(provider.localSubCategories.isEmpty)
-                {
-                  return const Center(
-                    child: CircularProgressIndicator());
-                }
-                return DataTable(
-              columnSpacing: 167,
-              columns: const [
-                 DataColumn(
-                label: Text("SubCategory Name",style: TextStyle(fontSize: 16),),
+        SizedBox(
+          height: 580,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding:  EdgeInsets.only(left: 10,top: 10),
+                  child: Text("All SubCategories",style: TextStyle(color: Colors.black54,fontSize: 20,fontWeight: FontWeight.w600),),
                 ),
-                DataColumn(
-                label: Text("Category",style: TextStyle(fontSize: 16),),
+                const SizedBox(
+                  height: 10,
                 ),
-                 DataColumn(
-                label: Text("Added Date",style: TextStyle(fontSize: 16),),
+                Consumer<SubCategoryProvider>(
+                  builder: (context, provider, child) {
+                    if(provider.localSubCategories.isEmpty)
+                    {
+                      return const Center(
+                        child: CircularProgressIndicator());
+                    }
+                    return DataTable(
+                  columnSpacing: 167,
+                  columns: const [
+                     DataColumn(
+                    label: Text("SubCategory Name",style: TextStyle(fontSize: 16),),
+                    ),
+                    DataColumn(
+                    label: Text("Category",style: TextStyle(fontSize: 16),),
+                    ),
+                     DataColumn(
+                    label: Text("Added Date",style: TextStyle(fontSize: 16),),
+                    ),
+                     DataColumn(
+                    label: Text("Edit",style: TextStyle(fontSize: 16),),
+                    ),
+                     DataColumn(
+                    label: Text("Delete",style: TextStyle(fontSize: 16),),
+                    ),
+                
+                  ],
+                  rows: List.generate(provider.localSubCategories.length, (index) => customDataRow(provider.localSubCategories[index],index+1,(){
+                  
+                   
+                  },()
+                  {
+                    provider.deleteSubCategory(provider.localSubCategories[index].sId!);
+                  }))
+                   ) ;
+                  },
                 ),
-                 DataColumn(
-                label: Text("Edit",style: TextStyle(fontSize: 16),),
-                ),
-                 DataColumn(
-                label: Text("Delete",style: TextStyle(fontSize: 16),),
-                ),
-    
               ],
-              rows: List.generate(provider.localSubCategories.length, (index) => customDataRow(provider.localSubCategories[index],index+1,(){
-              
-               
-              },()
-              {
-                provider.deleteSubCategory(provider.localSubCategories[index].sId!);
-              }))
-               ) ;
-              },
             ),
-          ],
+          ),
         ) 
       ),
     );

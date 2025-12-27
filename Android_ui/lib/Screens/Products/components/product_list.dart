@@ -16,7 +16,7 @@ class ProductList extends StatelessWidget{
     return Padding(
       padding: const EdgeInsets.only(left:10, top: 10 ),
       child: Container(
-        width: 1215,
+        width: 1225,
         decoration: BoxDecoration(
           color: Colors.white,
          borderRadius: BorderRadius.circular(10),

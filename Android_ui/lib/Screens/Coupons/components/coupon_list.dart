@@ -15,7 +15,7 @@ class CouponList extends StatelessWidget{
     return Padding(
       padding: const EdgeInsets.only(left:10, top: 10 ),
       child: Container(
-        width: 1120,
+        width: 1130,
         decoration: BoxDecoration(
           color: Colors.white,
          borderRadius: BorderRadius.circular(10),

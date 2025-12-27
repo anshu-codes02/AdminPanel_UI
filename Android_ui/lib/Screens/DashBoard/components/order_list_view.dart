@@ -11,56 +11,62 @@ class OrderList extends StatelessWidget{
   @override
   Widget build(BuildContext context)
   {
-    return Padding(
-      padding: const EdgeInsets.only(left:10, top: 10 ),
-      child: Container(
-        width: 847,
-        decoration: BoxDecoration(
-          color: Colors.white,
-         borderRadius: BorderRadius.circular(10)
+    return SizedBox(
+        height: 380, // or MediaQuery.of(context).size.height * 0.6
+      child: Padding(
+        padding: const EdgeInsets.only(left:10, top: 10 ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+            width: 847,
+            decoration: BoxDecoration(
+              color: Colors.white,
+             borderRadius: BorderRadius.circular(10)
+            ),
+            child:
+            Consumer<DataProvider>(
+              builder: (context, dataprovider, child) {
+                return DataTable(
+              columnSpacing: 17,
+              columns: const [
+                 DataColumn(
+                label: Text("Customer Name"),
+                ),
+                 DataColumn(
+                label: Text("Order Amount"),
+                ),
+                 DataColumn(
+                label: Text("Payment"),
+                ),
+                 DataColumn(
+                label: Text("Status"),
+                ),
+                 DataColumn(
+                label: Text("Date"),
+                ),
+                 DataColumn(
+                label: Text("Edit"),
+                ),
+                 DataColumn(
+                label: Text("Delete"),
+                ),
+              ],
+              rows: List.generate(dataprovider.orders.length, (index) => customDataRow(dataprovider.orders[index],index+1,(){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrderForm(order: dataprovider.orders[index]),
+                  )
+               );
+              },()
+              {
+          
+              }))
+               ) ;
+              },
+            ) 
+          ),
         ),
-        child:
-        Consumer<DataProvider>(
-          builder: (context, dataprovider, child) {
-            return DataTable(
-          columnSpacing: 17,
-          columns: const [
-             DataColumn(
-            label: Text("Customer Name"),
-            ),
-             DataColumn(
-            label: Text("Order Amount"),
-            ),
-             DataColumn(
-            label: Text("Payment"),
-            ),
-             DataColumn(
-            label: Text("Status"),
-            ),
-             DataColumn(
-            label: Text("Date"),
-            ),
-             DataColumn(
-            label: Text("Edit"),
-            ),
-             DataColumn(
-            label: Text("Delete"),
-            ),
-          ],
-          rows: List.generate(dataprovider.orders.length, (index) => customDataRow(dataprovider.orders[index],index+1,(){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => OrderForm(),
-              )
-           );
-          },()
-          {
-
-          }))
-           ) ;
-          },
-        ) 
       ),
     );
   }

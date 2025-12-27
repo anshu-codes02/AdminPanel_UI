@@ -6,6 +6,10 @@ The **BuyNest E-commerce Admin Panel** is a Windows application built using the 
 
 This project integrates a **Node.js** backend with a **MongoDB** database, demonstrating my skills in full-stack development—combining Flutter’s cross-platform UI capabilities with backend logic and data management. 
 
+## 🎥 Demo Video
+
+👉 [▶️ Watch Video](https://drive.google.com/file/d/1QOvbyE-pOIt9auMnTj8vkFHCL7j_U6Ze/view?usp=sharing)
+
 ## Features
 
 - **User Authentication:** Sign up and log in using email and password, managed through the backend API.

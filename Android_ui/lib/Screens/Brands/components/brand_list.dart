@@ -17,7 +17,7 @@ class BrandList extends StatelessWidget{
     return Padding(
       padding: const EdgeInsets.only(left:10, top: 10 ),
       child: Container(
-        width: 1120,
+        width: 1170,
         decoration: BoxDecoration(
           color: Colors.white,
          borderRadius: BorderRadius.circular(10),

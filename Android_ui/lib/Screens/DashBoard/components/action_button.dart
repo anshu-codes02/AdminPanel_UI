@@ -34,7 +34,7 @@ class ActionButton extends StatelessWidget{
               ),
             ),
               onPressed: (){
-                
+                Navigator.pop(context);
              },
               child: Text("Submit",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600),))
         ],

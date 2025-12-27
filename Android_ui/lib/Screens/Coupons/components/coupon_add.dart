@@ -1,6 +1,7 @@
 
 import 'package:adminpanel/Models/Product.dart';
 import 'package:adminpanel/Models/category.dart';
+import 'package:adminpanel/Screens/Category/cat_provider.dart';
 import 'package:adminpanel/Screens/Coupons/coupon_provider.dart';
 import 'package:adminpanel/core/data/data_provider.dart';
 import 'package:adminpanel/widgets/custom_datepicker.dart';
@@ -17,6 +18,7 @@ class CouponAdd extends StatelessWidget{
   Widget build(BuildContext context)
   {
     final provider = Provider.of<CouponProvider>(context, listen: false);
+    final provider3=Provider.of<CatProvider>(context,listen: false);
      final dataprovider = Provider.of<DataProvider>(context, listen: false);
    
 
@@ -208,7 +210,7 @@ class CouponAdd extends StatelessWidget{
                           width: 240,
                           child: CustomDropdown<category>(
                             hintText: "Category",
-                             list: dataprovider.categories,
+                             list: provider3.localCategories,
                               onchanged:(newValue)
                               {
                                 provider.selectedCategory= newValue;

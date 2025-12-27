@@ -1,7 +1,7 @@
 class Order {
   final UserId? userId;
   final String? orderDate;
-  final String? orderStatus;
+   String? orderStatus;
   final List<Items>? items;
   final String? sId;
   final double? totalPrice;
